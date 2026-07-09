@@ -3,91 +3,113 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>INICS — HackIT!4EU 2026 Demo Walkthroughs</title>
+<title>HeriTrace — HackIT!4EU Demo Walkthrough</title>
 <style>
-  :root {
-    --bg: #eceae7; --surface: #ffffff; --ink: #1a1a1a; --muted: #5c5852;
-    --line: #d9d5cf; --teal: #2f6f6a; --violet: #5b53d6;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-  header.hero { padding: 64px 0 12px; }
-  .badge { display: inline-block; font-size: 12px; letter-spacing: .09em; text-transform: uppercase;
-    color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; margin-bottom: 18px; }
-  h1 { font-family: Georgia, "Times New Roman", serif; font-size: 46px; line-height: 1.1; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 12px; }
-  .lede { color: var(--muted); font-size: 19px; max-width: 720px; }
-
-  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 40px 0 8px; }
-  @media (max-width: 720px){ .cards { grid-template-columns: 1fr; } }
-  .card { display: block; text-decoration: none; color: inherit; background: var(--surface);
-    border: 1px solid var(--line); border-radius: 16px; padding: 28px; transition: transform .12s ease, box-shadow .12s ease; }
-  .card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.09); }
-  .card .tag { font-size: 12px; letter-spacing: .07em; text-transform: uppercase; font-weight: 600; }
-  .card.heritrace .tag { color: var(--teal); }
-  .card.puitis .tag { color: var(--violet); }
-  .card h2 { font-family: Georgia, serif; font-size: 27px; margin: 8px 0 8px; }
-  .card p { color: var(--muted); font-size: 15px; margin-bottom: 16px; }
-  .card .surfaces { display: flex; flex-wrap: wrap; gap: 6px; }
-  .card .surfaces span { font-size: 12.5px; background: #f1efeb; border: 1px solid var(--line); border-radius: 7px; padding: 3px 9px; color: var(--muted); }
-  .card .go { margin-top: 16px; font-size: 14px; font-weight: 600; }
-  .card.heritrace .go { color: var(--teal); }
-  .card.puitis .go { color: var(--violet); }
-
-  section.pitch { padding: 48px 0 8px; }
-  section.pitch h3 { font-family: Georgia, serif; font-size: 24px; margin-bottom: 4px; }
-  section.pitch .desc { color: var(--muted); font-size: 15px; margin-bottom: 18px; }
-  .frame { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 22px rgba(0,0,0,.06); }
-  .frame img { display: block; width: 100%; height: auto; }
-
-  footer { margin-top: 44px; padding: 28px 0 64px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13.5px; }
-  footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
-
+  :root { --bg:#eceae7; --surface:#fff; --ink:#1a1a1a; --muted:#5c5852; --line:#d9d5cf; --accent:#2f6f6a; --chip:#edf2f1; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.55; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
+  header.hero { padding:56px 0 28px; }
+  .badge { display:inline-block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); border-radius:999px; padding:3px 12px; margin-bottom:18px; }
+  h1 { font-family:Georgia,"Times New Roman",serif; font-size:40px; line-height:1.12; font-weight:700; letter-spacing:-.01em; margin-bottom:10px; }
+  .sub { color:var(--muted); font-size:18px; max-width:780px; }
+  .meta { margin-top:16px; color:var(--muted); font-size:14px; }
+  .meta a { color:var(--accent); text-decoration:none; }
+  .meta a:hover { text-decoration:underline; }
+  nav.jump { position:sticky; top:0; z-index:10; background:rgba(236,234,231,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); margin-top:24px; }
+  nav.jump .wrap { display:flex; flex-wrap:wrap; gap:6px; padding:10px 20px; }
+  nav.jump a { font-size:13.5px; color:var(--ink); text-decoration:none; padding:6px 12px; border-radius:8px; border:1px solid transparent; white-space:nowrap; }
+  nav.jump a:hover { background:var(--chip); border-color:var(--line); }
+  section.shot { padding:40px 0 8px; scroll-margin-top:58px; }
+  .shot h2 { font-family:Georgia,serif; font-size:24px; font-weight:700; margin-bottom:4px; }
+  .shot .desc { color:var(--muted); font-size:15px; margin-bottom:18px; max-width:760px; }
+  .frame { background:var(--surface); border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:0 6px 22px rgba(0,0,0,.06); }
+  .frame img { display:block; width:100%; height:auto; }
+  footer { margin-top:48px; padding:28px 0 60px; border-top:1px solid var(--line); color:var(--muted); font-size:13.5px; }
+  footer a { color:var(--accent); text-decoration:none; }
   @media (prefers-color-scheme: dark) {
-    :root { --bg:#14140f; --surface:#1c1c17; --ink:#ece9e3; --muted:#9b968d; --line:#33322b; --teal:#7fb8b2; --violet:#9c95f0; }
-    .card .surfaces span { background:#23231d; }
+    :root { --bg:#14140f; --surface:#1c1c17; --ink:#ece9e3; --muted:#9b968d; --line:#33322b; --accent:#7fb8b2; --chip:#23231d; }
+    nav.jump { background:rgba(20,20,15,.92); }
   }
 </style>
 </head>
 <body>
 <header class="hero">
   <div class="wrap">
-    <span class="badge">INICS · HackIT!4EU · Limassol, Cyprus · 2026</span>
-    <h1>HackIT!4EU Demo Walkthroughs</h1>
-    <p class="lede">Two solutions built at the hackathon for open cultural-heritage provenance — captured as static, clickable snapshots of the live demos.</p>
+    <span class="badge">HackIT!4EU · Limassol 2026 · Static Snapshot</span>
+    <h1>HeriTrace</h1>
+    <p class="sub">Cyprus Twin it! 3D Heritage AI Visibility Audit — benchmarking how ChatGPT, Gemini, and Claude represent Europeana 3D heritage models against Europeana API ground truth.</p>
+    <p class="meta">Frozen walkthrough of the live demo, captured 2026-07-09 · Source: <a href="https://github.com/inicseu/puitis-hackit">inicseu/puitis-hackit</a> · Static picture-copy — buttons and search are inert; the interactive app rebuilds from the source repo.</p>
   </div>
 </header>
 
-<main class="wrap">
-  <div class="cards">
-    <a class="card heritrace" href="heritrace/">
-      <div class="tag">Solution 1</div>
-      <h2>HeriTrace</h2>
-      <p>An AI-visibility audit: how accurately ChatGPT, Gemini, and Claude describe Europeana 3D heritage models, benchmarked against Europeana API ground truth — turned into a correction-ready report.</p>
-      <div class="surfaces"><span>Report</span><span>Asset drill-downs</span><span>EDM Records</span><span>Crawl Sessions</span></div>
-      <div class="go">Open walkthrough →</div>
-    </a>
-    <a class="card puitis" href="puitis/">
-      <div class="tag">Solution 2</div>
-      <h2>puit.is</h2>
-      <p>Provenance-first infrastructure: recover the source of any 3D heritage image via an embedded watermark passport, and explore digitised heritage as textured 3D models and interactive point clouds.</p>
-      <div class="surfaces"><span>Passport</span><span>Models</span><span>Point Clouds</span></div>
-      <div class="go">Open walkthrough →</div>
-    </a>
+<nav class="jump">
+  <div class="wrap">
+    <a href="#pitch">Pitch</a>
+    <a href="#demo">Demo</a>
+    <a href="#report">Report</a>
+    <a href="#khirokitia">Khirokitia</a>
+    <a href="#paphos">Paphos Castle</a>
+    <a href="#lambousa">Lambousa</a>
+    <a href="#edm">EDM Records</a>
+    <a href="#crawl">Crawl Sessions</a>
   </div>
+</nav>
 
-  <section class="pitch">
-    <h3>The Pitch</h3>
-    <p class="desc">The HeriTrace pitch deck presented at HackIT!4EU — the problem, the proof on Cyprus assets, and the roadmap.</p>
+<main class="wrap">
+  <section class="shot" id="pitch">
+    <h2>Pitch Deck</h2>
+    <p class="desc">The HeriTrace pitch presented at HackIT!4EU — the problem, the proof on Cyprus assets, and the roadmap.</p>
     <div class="frame"><img src="slides.png" alt="HeriTrace HackIT!4EU pitch deck" loading="lazy"></div>
+  </section>
+
+  <section class="shot" id="demo">
+    <h2>Demo</h2>
+    <p class="desc">The guided entry point — Castle of Paphos as the showcase asset.</p>
+    <div class="frame"><img src="05-demo-paphos.png" alt="HeriTrace demo page" loading="lazy"></div>
+  </section>
+
+  <section class="shot" id="report">
+    <h2>Report — AI Visibility Audit</h2>
+    <p class="desc">Executive summary, five evaluation dimensions, and per-provider scoring (Claude 8.1 · ChatGPT 7.4 · Gemini 6.4) across the three Cypriot 3D assets.</p>
+    <div class="frame"><img src="01-report.png" alt="HeriTrace audit report" loading="lazy"></div>
+  </section>
+
+  <section class="shot" id="khirokitia">
+    <h2>Asset Drill-down — Khirokitia Vouni Neolithic Settlement</h2>
+    <p class="desc">Per-asset heritage quality grade, AI quality scores, metadata gaps, and benchmark findings.</p>
+    <div class="frame"><img src="02-asset-khirokitia-vouni.png" alt="Khirokitia Vouni drill-down" loading="lazy"></div>
+  </section>
+
+  <section class="shot" id="paphos">
+    <h2>Asset Drill-down — Castle of Paphos (3D HBIM)</h2>
+    <p class="desc">B+ grade, provider consensus, and what each model got right vs. wrong on provenance and licensing.</p>
+    <div class="frame"><img src="03-asset-paphos-castle.png" alt="Castle of Paphos drill-down" loading="lazy"></div>
+  </section>
+
+  <section class="shot" id="lambousa">
+    <h2>Asset Drill-down — Lambousa Fishing Trawler</h2>
+    <p class="desc">The lowest-scoring asset — underrepresented and inaccurate across all three AI providers.</p>
+    <div class="frame"><img src="04-asset-lambousa-trawler.png" alt="Lambousa Fishing Trawler drill-down" loading="lazy"></div>
+  </section>
+
+  <section class="shot" id="edm">
+    <h2>EDM Records</h2>
+    <p class="desc">Europeana 3D heritage objects ingested from the Twin it! gallery and TYPE:3D search — with AI-audit badges, content/metadata tiers, and search/filtering (1,223 records).</p>
+    <div class="frame"><img src="07-edm-records.png" alt="EDM Records index" loading="lazy"></div>
+  </section>
+
+  <section class="shot" id="crawl">
+    <h2>Crawl Sessions</h2>
+    <p class="desc">The ingestion pipeline's crawl-session history — how records were sourced from Europeana.</p>
+    <div class="frame"><img src="08-crawl-sessions.png" alt="Crawl Sessions index" loading="lazy"></div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    Built by the INICS team at HackIT!4EU (Limassol, Cyprus, 2026). Static snapshots for archival viewing; the live applications are not backed here. Sources: <a href="https://github.com/inicseu/puitis-hackit">puitis-hackit</a> (HeriTrace) · <a href="https://github.com/inicseu/eu-hackathon-testrun">eu-hackathon-testrun</a> (puit.is).
+    HeriTrace — built by the INICS team at HackIT!4EU (Limassol, Cyprus, 2026). Static snapshot for archival viewing; the live application is not backed here. Full source and deployment manifests: <a href="https://github.com/inicseu/puitis-hackit">github.com/inicseu/puitis-hackit</a>.
   </div>
 </footer>
 </body>
